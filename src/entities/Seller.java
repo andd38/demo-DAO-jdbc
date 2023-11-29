@@ -1,24 +1,40 @@
 package entities;
 
-public class Seller {
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+
+public class Seller implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String name;
 	private String email;
-	private date birthDate; 
+	private Date birthDate; 
 	private Double baseSalary;
 	
+	private Department department;
 	
-	
-	public Seller(int id, String name, String email, date birthDate, Double baseSalary) {
+	public Seller(int id, String name, String email, Date birthDate, Double baseSalary ,Department department) {
 		
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.baseSalary = baseSalary;
+		this.department = department;
 		
 	}
 	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -43,11 +59,11 @@ public class Seller {
 		this.email = email;
 	}
 	
-	public date getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 	
-	public void setBirthDate(date birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 	public Double getBaseSalary() {
@@ -57,6 +73,30 @@ public class Seller {
 	public void setBaseSalary(Double baseSalary) {
 		this.baseSalary = baseSalary;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Seller other = (Seller) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
+				+ baseSalary + ", department=" + department + "]";
+	}
+
 	
 	
 }
