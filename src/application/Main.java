@@ -1,62 +1,23 @@
 package application;
 
-
-import java.util.Scanner;
-
 import DAO.DAOFactory;
-import DAO.SellerDAO;
-import entities.Seller;
+import DAO.DepartmentDAO;
+import entities.Department;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc =new Scanner(System.in);
-		SellerDAO sellerDao= DAOFactory.createSellerDao();
 		
-		System.out.println("===teste 1 : seller findBy id===");
+		//SellerDAO sellerDao= DAOFactory.createSellerDao();
+		DepartmentDAO department = DAOFactory.createDepartmentDao();
+		System.out.println("===teste 1 : department insert ===");
 		
-		Seller seller = sellerDao.findById(3);
-		Seller seller2 =sellerDao.findById(3);
+		Department dp = new Department(null,"games");
 		
-		//System.out.println(seller);
-		
-		 //Department department = new Department(2,null);
-			/*
-			 * System.out.println("===teste 2 : seller findBy id==="); List<Seller>list =
-			 * sellerDao.findByDepartment(department); for (Seller seller1 : list) {
-			 * System.out.println(seller1); }
-			 */
-			 
-		 
+		department.insert(dp);
 		
 		
-		
-			
-			/*
-			 * System.out.println("===teste 3 : seller findBy id==="); List<Seller>list1 =
-			 * sellerDao.findAll(); for (Seller obj : list1) { System.out.println(obj); }
-			 */
-		 
-			/*
-			 * System.out.println("========teste 04: insert=========="); Seller newSeller
-			 * =new Seller(null,"greg","greg@gmail.com",new Date(),4000.0,department);
-			 * sellerDao.insert(newSeller); System.out.println("Inserted ! new id = "+
-			 * newSeller.getId());
-			 */
-			/*
-			 * System.out.println("========teste 05: insert=========="); seller =
-			 * sellerDao.findById(1); seller.setName("Martha Waine");
-			 * 
-			 * sellerDao.update(seller); System.out.println("Update completed");
-			 * seller2=sellerDao.findById(3); seller2.setName("Jorge");
-			 * sellerDao.update(seller2);
-			 */
-		System.out.println("========teste 06: insert==========");
-		System.out.println("enter id for delete teste");
-		int id = sc.nextInt();
-		sellerDao.deleteById(id);
-		System.out.println("delete completed");
-		sc.close();
+		System.out.println("Insert complete");
 	}
 
 }

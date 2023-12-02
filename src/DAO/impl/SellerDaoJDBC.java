@@ -99,9 +99,7 @@ public class SellerDaoJDBC implements SellerDAO{
 			st.setInt(1, id);
 			int rows= st.executeUpdate();
 			
-			if(rows == 0) {
-				System.out.println("User don't exist");
-			}
+		
 			
 		}
 		catch (SQLException e) {
