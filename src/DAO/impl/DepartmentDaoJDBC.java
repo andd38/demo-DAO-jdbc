@@ -6,11 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Set;
 
 import DAO.DepartmentDAO;
 import db.DB;
 import db.DbException;
 import entities.Department;
+import entities.Seller;
 
 public class DepartmentDaoJDBC implements DepartmentDAO{
 	
@@ -39,11 +41,11 @@ public class DepartmentDaoJDBC implements DepartmentDAO{
 				if(rs.next()) {
 					int id =rs.getInt(1);
 					obj.setId(id);
-				}
+			}
 				DB.closeResultSet(rs);
 			}else {
 				throw new DbException("Error unexpected");	
-	      }
+			}
 			
 		}
 		catch (SQLException e) {
@@ -69,8 +71,41 @@ public class DepartmentDaoJDBC implements DepartmentDAO{
 
 	@Override
 	public Department findById(Integer id) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT seller.* ,department.Name as DepName "
+					+ "from seller INNER JOIN department "
+					+ "on seller.DepartmentId = department.Id "
+					+ "WHERE seller.Id = ?;");
+			st.setInt(1, id);
+			rs =st.executeQuery();
+			
+			if(rs.next()) {
+				Department dep = instantiateDepartment(rs);
+				
+				return dep;
+			}
+			return null;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(st);
+		}
+	}
+
+
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department dep = new Department();
+		new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
 		
-		return null;
 	}
 
 	@Override

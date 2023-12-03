@@ -10,14 +10,20 @@ public class Main {
 		
 		//SellerDAO sellerDao= DAOFactory.createSellerDao();
 		DepartmentDAO department = DAOFactory.createDepartmentDao();
-		System.out.println("===teste 1 : department insert ===");
-		
-		Department dp = new Department(null,"games");
-		
-		department.insert(dp);
+		/*
+		 * System.out.println("===teste 1 : department insert ===");
+		 * 
+		 * Department dp = new Department(null,"casa ,mesa e banho");
+		 * 
+		 * department.insert(dp);
+		 */
 		
 		
 		System.out.println("Insert complete");
+		
+		System.out.println("===teste 2 : department findById ===");
+		
+		System.out.println(department.findById(5));
 	}
 
 }
