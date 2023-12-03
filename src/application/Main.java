@@ -18,12 +18,19 @@ public class Main {
 		 * department.insert(dp);
 		 */
 		
+		/*
+		 * System.out.println("Insert complete");
+		 * 
+		 * System.out.println("===teste 2 : department findById ===");
+		 * 
+		 * System.out.println(department.findById(5));
+		 */
 		
-		System.out.println("Insert complete");
+		System.out.println("===teste 3 : department delete ===");
+		department.deleteById(5);
+		System.out.println("Delete complete");
 		
-		System.out.println("===teste 2 : department findById ===");
 		
-		System.out.println(department.findById(5));
 	}
 
 }
