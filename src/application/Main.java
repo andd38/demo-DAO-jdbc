@@ -2,8 +2,6 @@ package application;
 
 import DAO.DAOFactory;
 import DAO.DepartmentDAO;
-import DAO.impl.DepartmentDaoJDBC;
-import entities.Department;
 
 public class Main {
 
